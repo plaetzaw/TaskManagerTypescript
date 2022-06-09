@@ -1,12 +1,35 @@
 import styled from 'styled-components'
 
+import theme from './theme'
+
+type Theme = typeof theme
 declare module 'styled-components' {
-    export interface DefaultTheme {
-        borderRadius: string;
-        colors: {
-            main: string,
-            primary: string,
-            secondary: string
+    export interface DefaultTheme extends Theme {
+        padding: string,
+        margin: string,
+        fonts: {
+            base: string,
+
         }
+        colorsPrimary: {
+            blue: string,
+            CheckBackground: string
+        }
+        colorsLight: {
+            VeryLightGray: string,
+            VeryLightGrayishBlue: string,
+            LightGrayishBlue: string,
+            DarkGrayishBlue: string,
+            VeryDarkGrayishBlue: string
+        },
+        colorsDark: {
+            VeryDarkBlue: string,
+            VeryDarkDesatBlue: string,
+            LightGrayishBlue: string,
+            DarkGrayishBlue: string,
+            VeryDarkGrayishBlue: string,
+            VeryVeryDarkGrayishBlue: string
+        },
+
     }
 }

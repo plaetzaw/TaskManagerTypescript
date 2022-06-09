@@ -2,15 +2,20 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        Task Manager
+        <title>Task Manager</title>
       </Head>
-      <div>
+      <Container>
         Hello Whirls
-      </div>
+      </Container>
     </div>
   )
 }
