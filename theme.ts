@@ -1,12 +1,14 @@
 import { DefaultTheme } from 'styled-components';
 
 const myTheme: DefaultTheme = {
-    padding: '0px',
+    padding: '5em',
     margin: '0px',
+    test: 'red',
     fonts: {
         base: 'Josefin Sans'
     },
     colorsPrimary: {
+        red: 'red',
         blue: 'hsl(220, 98%, 61%)',
         CheckBackground: 'linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%)'
     },

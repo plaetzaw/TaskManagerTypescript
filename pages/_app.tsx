@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     // background-color: #3F7EFD;
-    color: ${props => props.theme.colorsPrimary};
     minHeight: 100vh;
   }
   a {
