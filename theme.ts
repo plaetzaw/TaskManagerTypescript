@@ -1,25 +1,24 @@
 import { DefaultTheme } from 'styled-components';
 
-const myTheme: DefaultTheme = {
-    padding: '5em',
+const primaryTheme: DefaultTheme = {
+    padding: '0px',
     margin: '0px',
-    test: 'red',
     fonts: {
-        base: 'Josefin Sans'
+        base: 'Josefin Sans',
+        size: '18px'
     },
     colorsPrimary: {
-        red: 'red',
         blue: 'hsl(220, 98%, 61%)',
         CheckBackground: 'linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%)'
     },
-    colorsLight: {
+    lightMode: {
         VeryLightGray: 'hsl(0, 0%, 98%)',
         VeryLightGrayishBlue: 'hsl(236, 33%, 92%)',
         LightGrayishBlue: 'hsl(233, 11%, 84%)',
         DarkGrayishBlue: 'hsl(236, 9%, 61%)',
         VeryDarkGrayishBlue: 'hsl(235, 19%, 35%)'
     },
-    colorsDark: {
+    darkMode: {
         VeryDarkBlue: 'hsl(235, 21%, 11%)',
         VeryDarkDesatBlue: 'hsl(235, 24%, 19%)',
         LightGrayishBlue: 'hsl(234, 39%, 85%)',
@@ -30,4 +29,4 @@ const myTheme: DefaultTheme = {
     }
 };
 
-export default { myTheme };
+export default { primaryTheme };

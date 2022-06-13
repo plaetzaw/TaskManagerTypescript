@@ -6,24 +6,22 @@ declare module 'styled-components' {
     export interface DefaultTheme extends Theme {
         padding: string,
         margin: string,
-        test: string,
         fonts: {
             base: string,
-
+            size: string
         },
         colorsPrimary: {
-            red: string,
             blue: string,
             CheckBackground: string
         },
-        colorsLight: {
+        lightMode: {
             VeryLightGray: string,
             VeryLightGrayishBlue: string,
             LightGrayishBlue: string,
             DarkGrayishBlue: string,
             VeryDarkGrayishBlue: string
         },
-        colorsDark: {
+        darkMode: {
             VeryDarkBlue: string,
             VeryDarkDesatBlue: string,
             LightGrayishBlue: string,
