@@ -1,8 +1,12 @@
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styled from 'styled-components'
+import { ITask } from '../Interfaces'
+
+import Todo from '../components/todo'
+import Footer from '../components/footer'
 
 
 
@@ -37,13 +41,64 @@ interface Toggle {
 
 const Home: NextPage = () => {
   const [darkMode, setDarkMode] = useState<boolean>(false)
-  console.log('darkmode?', darkMode)
+  const [task, setTask] = useState<string>("")
+  const [todoList, setTodoList] = useState<ITask[]>([])
+
+  // useEffect(() => {
+  // }, [todoList])
+  
 
 
-  const toggleMode: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+  const onEnter = (e): void => {
+    if (e.key === "Enter") {
+      const newTask = {
+        taskName: task,
+        status: 'active'
+      }
+      setTodoList([...todoList, newTask])
+      setTask("")
+      console.log('tasks', todoList)
+    }
+  }
+
+  const completeTask = (finishedTask: string): void => {
+    todoList.map((task) => {
+      if (task.taskName === finishedTask) {
+        task.status = 'completed'
+        console.log('check status', task.status)
+      }
+    })
+  }
+
+  const deleteCompleted = () => {
+    console.log('Delete triggered')
+    setTodoList(todoList.filter((task) => {
+      return task.status === 'active'
+    }))
+  }
+
+  const toggleMode: React.MouseEventHandler<HTMLButtonElement> = (e): void => {
     e.preventDefault()
     setDarkMode(!darkMode)
+    console.log('darkmode?', darkMode)
   }
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setTask(event.target.value)
+  }
+
+  const TaskCount = todoList.length
+  // console.log(todoList.length)
+  // console.log(TaskCount)
+
+
+
+  const TodoDisplay = todoList.map((task: ITask, key: number) => {
+    return (
+      <Todo key={key} task={task} completeTask={completeTask}/>
+    )
+  })
+
 
   // color: ${(props) => {
   //   console.log(props.theme.primaryTheme.darkMode)
@@ -58,8 +113,10 @@ const Home: NextPage = () => {
           <Background darkMode={darkMode}>
             HelloWhiril
           </Background>
+          <input name='Task' placeholder='Create a new todo...' onChange={handleChange} onKeyDown={onEnter} value={task}/>
         {/* Todo + Mode Changer */}
-        {/* Todos */}
+        {TodoDisplay}
+        <Footer taskCount={TaskCount} deletedCompleted={deleteCompleted} todoList={todoList} setTodoList={setTodoList}/>
       </Container>
     </div>
   )
