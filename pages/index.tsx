@@ -43,6 +43,8 @@ const Home: NextPage = () => {
   const [darkMode, setDarkMode] = useState<boolean>(false)
   const [task, setTask] = useState<string>("")
   const [todoList, setTodoList] = useState<ITask[]>([])
+  const [filter, setFilter] = useState<string>('All')
+  // const [displayTodos, setDisplayTodos] = useState<ITask[]>([])
 
   // useEffect(() => {
   // }, [todoList])
@@ -87,13 +89,32 @@ const Home: NextPage = () => {
     setTask(event.target.value)
   }
 
+  // const changeDisplayedTodos = (todoList: [], status: string) => {
+  //   switch (case)
+  // }
+
   const TaskCount = todoList.length
   // console.log(todoList.length)
   // console.log(TaskCount)
 
+  const filteredList = todoList.filter((todo) => {
+    switch (filter) {
+      case "All":
+        return true
+      case "Active":
+        return todo.status === 'active'
+      case "Completed":
+        return todo.status === 'completed'
+      default:
+        return true
+    }
+  })
+
+  console.log(filteredList)
 
 
-  const TodoDisplay = todoList.map((task: ITask, key: number) => {
+
+  const TodoDisplay = filteredList.map((task: ITask, key: number) => {
     return (
       <Todo key={key} task={task} completeTask={completeTask}/>
     )
@@ -116,7 +137,7 @@ const Home: NextPage = () => {
           <input name='Task' placeholder='Create a new todo...' onChange={handleChange} onKeyDown={onEnter} value={task}/>
         {/* Todo + Mode Changer */}
         {TodoDisplay}
-        <Footer taskCount={TaskCount} deletedCompleted={deleteCompleted} todoList={todoList} setTodoList={setTodoList}/>
+        <Footer taskCount={TaskCount} deletedCompleted={deleteCompleted} todoList={todoList} setTodoList={setTodoList} filter={filter} setFilter={setFilter}/>
       </Container>
     </div>
   )

@@ -14,29 +14,27 @@ interface Props {
     taskCount: number,
     deleteCompleted(): void,
     todoList: [],
-    setTodoList(): void
+    setTodoList(): void,
+    filter: string,
+    setFilter(): void
 }
 
-const Footer: FC = ({ taskCount, deleteCompleted, todoList, setTodoList }: Props) => {
+const Footer: FC = ({ taskCount, deleteCompleted, todoList, setTodoList, filter, setFilter }: Props) => {
 const ItemPluralization = (taskCount === 1) ? "Items" : "Item"
   return (
     <div>
     <FooterContainer>
     <FooterItem>{taskCount} {ItemPluralization} Left</FooterItem>
-    <FooterItem>All</FooterItem>
-    <FooterItem>Active</FooterItem>
-    <FooterItem>Completed</FooterItem>
-    {/* <button onClick={() =>{
-        console.log('hello')
-        deleteCompleted
-    }}>Clear Completed</button> */}
-    <button onClick={() => {
+    <FooterItem onClick={() => { setFilter("All")}}>All</FooterItem>
+    <FooterItem onClick={() => { setFilter("Active")}}>Active</FooterItem>
+    <FooterItem onClick={() => { setFilter("Completed")}}>Completed</FooterItem>
+    <FooterItem onClick={() => {
         setTodoList(todoList.filter((task) => {
             return task.status === 'active'
           }))
     }}>
     Clear Completed
-    </button>
+    </FooterItem>
 
     {/* <button onClick={() => { deleteCompleted }}>Clear Completed</button> */}
     </FooterContainer>
