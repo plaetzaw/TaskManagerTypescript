@@ -5,10 +5,19 @@ const FooterContainer = styled.ul`
     display: flex;
     flex-direction: row;
 `
-const FooterItem = styled.li`
+const FooterItem = styled.li<DisplayModeProps>`
     display: flex;
     padding: 1em;
+    color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryDarkGrayishBlue : props.theme.primaryTheme.darkMode.VeryDarkGrayishBlue};
+    &:hover {
+        cursor: hand;
+        color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryLightGrayishBlue : props.theme.primaryTheme.darkMode.LightGrayishBlue};
+    }
 `
+
+interface DisplayModeProps {
+    darkMode: boolean,
+  }
 
 interface Props {
     taskCount: number,
@@ -16,19 +25,24 @@ interface Props {
     todoList: [],
     setTodoList(): void,
     filter: string,
-    setFilter(): void
+    setFilter(): void, 
+    darkMode: boolean
 }
 
-const Footer: FC = ({ taskCount, deleteCompleted, todoList, setTodoList, filter, setFilter }: Props) => {
-const ItemPluralization = (taskCount === 1) ? "Items" : "Item"
+
+const Footer: FC = ({ taskCount, deleteCompleted, todoList, setTodoList, filter, setFilter, darkMode }: Props) => {
+const ItemPluralization = (taskCount > 1 || taskCount === 0) ? "Items" : "Item"
+
+console.log(darkMode)
+
   return (
     <div>
     <FooterContainer>
-    <FooterItem>{taskCount} {ItemPluralization} Left</FooterItem>
-    <FooterItem onClick={() => { setFilter("All")}}>All</FooterItem>
-    <FooterItem onClick={() => { setFilter("Active")}}>Active</FooterItem>
-    <FooterItem onClick={() => { setFilter("Completed")}}>Completed</FooterItem>
-    <FooterItem onClick={() => {
+    <FooterItem darkMode={darkMode}>{taskCount} {ItemPluralization} Left</FooterItem>
+    <FooterItem darkMode={darkMode} onClick={() => { setFilter("All")}}>All</FooterItem>
+    <FooterItem darkMode={darkMode} onClick={() => { setFilter("Active")}}>Active</FooterItem>
+    <FooterItem darkMode={darkMode} onClick={() => { setFilter("Completed")}}>Completed</FooterItem>
+    <FooterItem darkMode={darkMode} onClick={() => {
         setTodoList(todoList.filter((task) => {
             return task.status === 'active'
           }))
