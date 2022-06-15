@@ -167,7 +167,7 @@ const Home: NextPage = () => {
         <title>Task Manager</title>
       </Head>
       <Container darkMode={darkMode}>
-        <button toggle={darkMode} onClick={toggleMode}>Toggle</button>
+        <button darkMode={darkMode} onClick={toggleMode}>Toggle</button>
           <Background darkMode={darkMode}>
             HelloWhiril
           </Background>
