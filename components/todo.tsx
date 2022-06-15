@@ -19,44 +19,69 @@ const DisplayTask = styled.div<DisplayModeProps>`
     font-size: ${props => props.theme.primaryTheme.fonts.size};
     background-color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryLightGray : props.theme.primaryTheme.darkMode.VeryDarkDesatBlue};
     color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryDarkGrayishBlue : props.theme.primaryTheme.darkMode.LightGrayishBlue};
+    text-decoration: ${props => props.completed ? "line-through" : ""};
     border: none;
 `
 
 
-const Circle = styled.div`
+const Circle = styled.div<DisplayModeProps>`
     width: 40px;
     height: 40px;
     border-radius: 40px;
-    background-color: white;
     margin: 0 1em 0 1em;
+    background-color: ${props => props.completed ? "blue" : "red"};
 `
 
-const EndX = styled.span`
+const EndX = styled.button`
     // align-self: self-end;
     margin-left: auto;
 `
 interface DisplayModeProps {
     darkMode: boolean,
+    completed?: boolean
   }
 
 interface Props {
     task: ITask,
     completeTask (finishedTask: string): void,
-    darkMode: boolean
+    darkMode: boolean,
+    todoList: [],
+    setTodoList(): void,
 }
+
+
 
 // color: ${(props) => {
 //     console.log(props.darkMode)
 //   }} 
 
-const Todo = ({ task, completeTask, darkMode }: Props) => {
+const Todo = ({ task, completeTask, darkMode, todoList, setTodoList }: Props) => {
+
+    let completed
+    if (task.status === 'completed') {
+        completed = true
+    } else {
+        completed = false
+    }
+
+    const deleteSingleTask = (task: any) => {
+        const id = task.id
+        console.log(id)
+        setTodoList(
+            todoList.filter((task: any) => {
+                return task.id != id
+            })
+    
+        )
+    }
+
   return (
     <TaskContainer darkMode={darkMode}>
-        <DisplayTask darkMode={darkMode}>
-        <Circle onClick={() => { completeTask(task.taskName)}}/>
+        <DisplayTask completed={completed} darkMode={darkMode}>
+        <Circle completed={completed} darkMode={darkMode} onClick={() => { completeTask(task.taskName)}}/>
         <span style={{paddingRight: '2em'}}>{task.taskName}</span>
         <span>{task.status}</span>
-        <EndX>X</EndX>
+        <EndX onClick={() => deleteSingleTask(task)}>X</EndX>
         </DisplayTask>
     </TaskContainer>
   )

@@ -1,4 +1,5 @@
 export interface ITask {
-    taskName: String,
-    status: String
+    id: number,
+    taskName: string,
+    status: string
 }

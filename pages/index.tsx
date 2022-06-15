@@ -61,7 +61,6 @@ const EnterTask = styled.input<DisplayModeProps>`
   font-size: ${props => props.theme.primaryTheme.fonts.size};
   background-color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryLightGray : props.theme.primaryTheme.darkMode.VeryDarkDesatBlue};
   color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryDarkGrayishBlue : props.theme.primaryTheme.darkMode.LightGrayishBlue};
-
   border: none;
 `
 
@@ -83,7 +82,7 @@ const Circle = styled.div<DisplayModeProps>`
 // }} 
 
 interface DisplayModeProps {
-  darkMode: boolean,
+  darkMode?: boolean,
 }
 
 interface Toggle {
@@ -96,12 +95,12 @@ const Home: NextPage = () => {
   const [todoList, setTodoList] = useState<ITask[]>([])
   const [filter, setFilter] = useState<string>('All')
 
-
   const onEnter = (e): void => {
     if (e.key === "Enter") {
       const newTask = {
+        id: Math.floor(Math.random() * 1000000),
         taskName: task,
-        status: 'active'
+        status: 'active',
       }
       setTodoList([...todoList, newTask])
       setTask("")
@@ -156,7 +155,7 @@ const Home: NextPage = () => {
 
   const TodoDisplay = filteredList.map((task: ITask, key: number) => {
     return (
-      <Todo key={key} task={task} completeTask={completeTask} darkMode={darkMode}/>
+      <Todo key={key} task={task} completeTask={completeTask} darkMode={darkMode} todoList={todoList} setTodoList={setTodoList}/>
     )
   })
 
@@ -184,9 +183,8 @@ const Home: NextPage = () => {
               <Circle darkMode={darkMode}/>
               <EnterTask  darkMode={darkMode} name='Task' placeholder='Create a new todo...' onChange={handleChange} onKeyDown={onEnter} value={task}/>
             </TaskContainer>
-        {/* Todo + Mode Changer */}
         {TodoDisplay}
-        <Footer darkMode={darkMode} taskCount={TaskCount} deletedCompleted={deleteCompleted} todoList={todoList} setTodoList={setTodoList} filter={filter} setFilter={setFilter}/>
+        <Footer darkMode={darkMode} filter={filter} taskCount={TaskCount} deletedCompleted={deleteCompleted} todoList={todoList} setTodoList={setTodoList} filter={filter} setFilter={setFilter}/>
       </Container>
     </div>
   )

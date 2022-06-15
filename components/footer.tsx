@@ -8,10 +8,13 @@ const FooterContainer = styled.ul`
 const FooterItem = styled.li<DisplayModeProps>`
     display: flex;
     padding: 1em;
-    color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryDarkGrayishBlue : props.theme.primaryTheme.darkMode.VeryDarkGrayishBlue};
+    color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.DarkGrayishBlue : props.theme.primaryTheme.darkMode.VeryDarkGrayishBlue};
     &:hover {
         cursor: hand;
-        color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryLightGrayishBlue : props.theme.primaryTheme.darkMode.LightGrayishBlue};
+        color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryDarkGrayishBlue : props.theme.primaryTheme.darkMode.LightGrayishBlue};
+    }
+    &:active {
+        color: ${props => props.theme.primaryTheme.colorsPrimary.blue};
     }
 `
 
@@ -23,9 +26,9 @@ interface Props {
     taskCount: number,
     deleteCompleted(): void,
     todoList: [],
-    setTodoList(): void,
+    setTodoList( arg0: any ): void,
     filter: string,
-    setFilter(): void, 
+    setFilter( arg0: string ): void, 
     darkMode: boolean
 }
 
@@ -33,13 +36,17 @@ interface Props {
 const Footer: FC = ({ taskCount, deleteCompleted, todoList, setTodoList, filter, setFilter, darkMode }: Props) => {
 const ItemPluralization = (taskCount > 1 || taskCount === 0) ? "Items" : "Item"
 
-console.log(darkMode)
+// console.log(darkMode)
+
+if (filter === 'All') {
+
+}
 
   return (
     <div>
     <FooterContainer>
     <FooterItem darkMode={darkMode}>{taskCount} {ItemPluralization} Left</FooterItem>
-    <FooterItem darkMode={darkMode} onClick={() => { setFilter("All")}}>All</FooterItem>
+    <FooterItem darkMode={darkMode} onClick={() => {setFilter("All")}}>All</FooterItem>
     <FooterItem darkMode={darkMode} onClick={() => { setFilter("Active")}}>Active</FooterItem>
     <FooterItem darkMode={darkMode} onClick={() => { setFilter("Completed")}}>Completed</FooterItem>
     <FooterItem darkMode={darkMode} onClick={() => {

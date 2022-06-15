@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none !important;
   }
+  li {
+    cursor: pointer;
+  }
 `
 
 function MyApp({ Component, pageProps }: AppProps) {
