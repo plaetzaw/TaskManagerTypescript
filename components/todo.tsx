@@ -54,7 +54,7 @@ interface Props {
     task: ITask,
     completeTask (finishedTask: string): void,
     darkMode: boolean,
-    todoList: [],
+    todoList: ITask[],
     setTodoList(): void,
 }
 
@@ -65,7 +65,7 @@ interface Props {
 //   }} 
 
 const Todo = ({ task, completeTask, darkMode, todoList, setTodoList }: Props) => {
-
+    console.log('task', task)
     let completed
     if (task.status === 'completed') {
         completed = true
@@ -83,6 +83,7 @@ const Todo = ({ task, completeTask, darkMode, todoList, setTodoList }: Props) =>
     
         )
     }
+
 
   return (
     <TaskContainer darkMode={darkMode}>

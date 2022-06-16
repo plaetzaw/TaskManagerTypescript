@@ -120,7 +120,11 @@ const Home: NextPage = () => {
   const [task, setTask] = useState<string>("")
   const [todoList, setTodoList] = useState<ITask[]>([])
   const [filter, setFilter] = useState<string>('All')
-
+  const [override, setOverride] = useState<boolean>(false)
+  
+  useEffect(() => {
+  }, [todoList])
+  
   const onEnter = (e): void => {
     if (e.key === "Enter") {
       const newTask = {
@@ -130,21 +134,39 @@ const Home: NextPage = () => {
       }
       setTodoList([...todoList, newTask])
       setTask("")
-      console.log('tasks', todoList)
     }
   }
+
+  // const completeTask = (finishedTask: string): void => {
+    // console.log(test)
+    // setTodoList(
+    // test.map((e) => {
+    //   console.log(e.task === finishedTask)
+    //   console.log(e.task === finishedTask ? {...e, qty: e.qty + 15 } : {...e, qty: e.qty * 15})
+    //   console.log(e.task === finishedTask ? {...e, status: "completed" } : {...e, status: "active"})
+    // })
+    // )
+    // console.log(test)
+      // const finishTask = todoList.map((task) => {
+      //   console.log('Do they match', task.taskName === finishedTask)
+      //   task.taskName === finishedTask ? { ...task, status: "completed", name: "house"} : {...task, status: "doesthisshitevenwork"}
+      // })
+      // console.log(finishTask)
+      // setTodoList(todoList)
+  // }
+
 
   const completeTask = (finishedTask: string): void => {
     todoList.map((task) => {
       if (task.taskName === finishedTask) {
         task.status = 'completed'
-        console.log('check status', task.status)
       }
+      setOverride(!override)
     })
   }
 
+
   const deleteCompleted = () => {
-    console.log('Delete triggered')
     setTodoList(todoList.filter((task) => {
       return task.status === 'active'
     }))
@@ -153,7 +175,6 @@ const Home: NextPage = () => {
   const toggleMode: React.MouseEventHandler<HTMLOrSVGElement> = (e): void => {
     e.preventDefault()
     setDarkMode(!darkMode)
-    console.log('darkmode?', darkMode)
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -180,8 +201,6 @@ const Home: NextPage = () => {
       <Todo key={key} task={task} completeTask={completeTask} darkMode={darkMode} todoList={todoList} setTodoList={setTodoList}/>
     )
   })
-
-  // const ToggleIcon = darkMode ? 
 
   return (
     <div>

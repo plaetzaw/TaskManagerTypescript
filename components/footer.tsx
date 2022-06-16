@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { ITask } from '../Interfaces'
 
 const FooterContainer = styled.ul`
     display: flex;
@@ -27,7 +28,7 @@ interface DisplayModeProps {
 interface Props {
     taskCount: number,
     deleteCompleted(): void,
-    todoList: [],
+    todoList: ITask[],
     setTodoList( arg0: any ): void,
     filter: string,
     setFilter( arg0: string ): void, 
@@ -65,7 +66,6 @@ const ItemPluralization = (taskCount > 1 || taskCount === 0) ? "Items" : "Item"
         } else {
             selected = false
         }
-        console.log(selected)
 
         return (
             <FooterItem key={index} selected={selected} onClick={() => { setFilter(`${item.name}`)}}>
@@ -83,8 +83,6 @@ const ItemPluralization = (taskCount > 1 || taskCount === 0) ? "Items" : "Item"
     }}>
     Clear Completed
     </FooterItem>
-
-    {/* <button onClick={() => { deleteCompleted }}>Clear Completed</button> */}
     </FooterContainer>
     </div>
   )
