@@ -8,8 +8,6 @@ import { ITask } from '../Interfaces'
 import Todo from '../components/todo'
 import Footer from '../components/footer'
 
-
-
 const Container = styled.div<DisplayModeProps>`
   display: flex;
   flex-direction: column;
@@ -20,11 +18,12 @@ const Container = styled.div<DisplayModeProps>`
   padding: ${props => props.theme.primaryTheme.padding};
   margin: ${props => props.theme.primaryTheme.margin};
   background-color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryLightGrayishBlue : props.theme.primaryTheme.darkMode.VeryDarkBlue};
-`
+  border: 1px solid white;
+  `
 
 const Background = styled.div<DisplayModeProps>`
   width: 100%;
-  height: 250px;
+  height: 275px;
   z-index: 2;
   background-image: url${props => !props.darkMode ? '(/bg-mobile-light.jpg)' : '(/bg-mobile-dark.jpg)'};
   background-size: cover;
@@ -40,7 +39,6 @@ const TodoContainer = styled.div`
   min-width: 95%;
   border: 1px solid red;
   z-index: 1;
-  margin-bottom: 50em;
   @media (min-width: 1200px) {
     max-width: 50%;
   }
@@ -48,9 +46,26 @@ const TodoContainer = styled.div`
 
 const TitleContainer = styled.div<DisplayModeProps>`
   width: 90%;
-  background: green;
+  height: 8em;
+  align-items: center;
   display: flex;
   flex-direction: row;
+  color: ${props => props.theme.primaryTheme.lightMode.VeryLightGray};
+`
+
+const Title = styled.span`
+  font-family: ${props => props.theme.primaryTheme.fonts.base};
+  font-size: 24px;
+  letter-spacing: 0.6rem;
+  font-weight: 700;
+`
+
+const ModeIcon = styled.svg<DisplayModeProps>`
+  background-image: url${props => props.darkMode ? '(/icon-sun.svg)' : '(/icon-moon.svg)'};
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
 `
 
 const TaskContainer = styled.div<DisplayModeProps>`
@@ -69,6 +84,7 @@ const EnterTask = styled.input<DisplayModeProps>`
   width: 100%;
   font-family: ${props => props.theme.primaryTheme.fonts.base};
   font-size: ${props => props.theme.primaryTheme.fonts.size};
+  font-weight: 400;
   background-color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryLightGray : props.theme.primaryTheme.darkMode.VeryDarkDesatBlue};
   color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryDarkGrayishBlue : props.theme.primaryTheme.darkMode.LightGrayishBlue};
   border: none;
@@ -134,7 +150,7 @@ const Home: NextPage = () => {
     }))
   }
 
-  const toggleMode: React.MouseEventHandler<HTMLButtonElement> = (e): void => {
+  const toggleMode: React.MouseEventHandler<HTMLOrSVGElement> = (e): void => {
     e.preventDefault()
     setDarkMode(!darkMode)
     console.log('darkmode?', darkMode)
@@ -165,6 +181,8 @@ const Home: NextPage = () => {
     )
   })
 
+  // const ToggleIcon = darkMode ? 
+
   return (
     <div>
       <Head>
@@ -172,12 +190,10 @@ const Home: NextPage = () => {
       </Head>
       <Container darkMode={darkMode}>
           <Background darkMode={darkMode}>
-            HelloWhiril
-          </Background>
           <TodoContainer>
             <TitleContainer>
-              <span style={{alignSelf: 'flex-start'}}>TODO</span>
-              <span darkMode={darkMode} onClick={toggleMode}>Toggle</span>
+              <Title>TODO</Title>
+              <ModeIcon darkMode={darkMode} onClick={toggleMode}/>
             </TitleContainer>
             <TaskContainer darkMode={darkMode}>
               <Circle darkMode={darkMode}/>
@@ -185,7 +201,9 @@ const Home: NextPage = () => {
             </TaskContainer>
         {TodoDisplay}
         <Footer darkMode={darkMode} filter={filter} taskCount={TaskCount} deletedCompleted={deleteCompleted} todoList={todoList} setTodoList={setTodoList} filter={filter} setFilter={setFilter}/>
-        </TodoContainer>      
+        </TodoContainer>             
+        </Background>
+   
       </Container>
     </div>
   )

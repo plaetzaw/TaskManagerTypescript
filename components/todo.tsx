@@ -1,3 +1,4 @@
+import { url } from 'inspector'
 import React from 'react'
 import styled from 'styled-components'
 import { ITask }   from '../Interfaces'
@@ -25,16 +26,24 @@ const DisplayTask = styled.div<DisplayModeProps>`
 
 
 const Circle = styled.div<DisplayModeProps>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     height: 40px;
     border-radius: 40px;
     margin: 0 1em 0 1em;
-    background-color: ${props => props.completed ? "blue" : "red"};
+    background-color: ${props => props.completed ? props.theme.primaryTheme.colorsPrimary.blue : ""};
+    background-image: url${props => props.completed ? '(/icon-check.svg)' : null};
+    // background-repeat: no-repeat;
 `
 
-const EndX = styled.button`
-    // align-self: self-end;
+const XIcon = styled.svg<DisplayModeProps>`
+    background-image: url(/icon-cross.svg);
+    background-repeat: no-repeat;
     margin-left: auto;
+    width: 40px;
+    height: 20px;
 `
 interface DisplayModeProps {
     darkMode: boolean,
@@ -81,7 +90,7 @@ const Todo = ({ task, completeTask, darkMode, todoList, setTodoList }: Props) =>
         <Circle completed={completed} darkMode={darkMode} onClick={() => { completeTask(task.taskName)}}/>
         <span style={{paddingRight: '2em'}}>{task.taskName}</span>
         <span>{task.status}</span>
-        <EndX onClick={() => deleteSingleTask(task)}>X</EndX>
+        <XIcon darkMode={darkMode} onClick={() => deleteSingleTask(task)}/>
         </DisplayTask>
     </TaskContainer>
   )
