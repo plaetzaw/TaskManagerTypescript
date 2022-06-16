@@ -11,6 +11,7 @@ import Footer from '../components/footer'
 const Container = styled.div<DisplayModeProps>`
   display: flex;
   flex-direction: column;
+  width: 100%;
   min-height: 100vh;
   align-items: center;
   font-family: ${props => props.theme.primaryTheme.fonts.base};
@@ -220,7 +221,8 @@ const Home: NextPage = () => {
             </TaskContainer>
         {TodoDisplay}
         <Footer darkMode={darkMode} filter={filter} taskCount={TaskCount} deletedCompleted={deleteCompleted} todoList={todoList} setTodoList={setTodoList} filter={filter} setFilter={setFilter}/>
-        </TodoContainer>             
+        </TodoContainer>
+        hi             
         </Background>
    
       </Container>

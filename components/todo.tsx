@@ -22,6 +22,7 @@ const DisplayTask = styled.div<DisplayModeProps>`
     color: ${props => props.darkMode ? props.theme.primaryTheme.lightMode.VeryDarkGrayishBlue : props.theme.primaryTheme.darkMode.LightGrayishBlue};
     text-decoration: ${props => props.completed ? "line-through" : ""};
     border: none;
+    border-bottom: 1px solid ${props => props.darkMode ? props.theme.primaryTheme.lightMode.LightGrayishBlue : props.theme.primaryTheme.darkMode.VeryVeryDarkGrayishBlue};
 `
 
 
@@ -65,7 +66,6 @@ interface Props {
 //   }} 
 
 const Todo = ({ task, completeTask, darkMode, todoList, setTodoList }: Props) => {
-    console.log('task', task)
     let completed
     if (task.status === 'completed') {
         completed = true
@@ -90,7 +90,6 @@ const Todo = ({ task, completeTask, darkMode, todoList, setTodoList }: Props) =>
         <DisplayTask completed={completed} darkMode={darkMode}>
         <Circle completed={completed} darkMode={darkMode} onClick={() => { completeTask(task.taskName)}}/>
         <span style={{paddingRight: '2em'}}>{task.taskName}</span>
-        <span>{task.status}</span>
         <XIcon darkMode={darkMode} onClick={() => deleteSingleTask(task)}/>
         </DisplayTask>
     </TaskContainer>
