@@ -24,13 +24,22 @@ const Container = styled.div<DisplayModeProps>`
 
 const Background = styled.div<DisplayModeProps>`
   width: 100%;
-  height: 200px;
+  height: 400px;
   background-image: url${props => !props.darkMode ? '(/bg-mobile-light.jpg)' : '(/bg-mobile-dark.jpg)'};
-  object-fit: cover;
-  // background-repeat: no-repeat;
+  background-size: cover;
   @media (min-width: 1200px) {
     background-image: url${props => !props.darkMode ? '(/bg-desktop-light.jpg)' : '(/bg-desktop-dark.jpg)'};
   } 
+`
+
+const TodoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 95%;
+  @media (min-width: 1200px) {
+    max-width: 50%;
+  }
 `
 
 const Test = styled.div<DisplayModeProps>`
@@ -149,17 +158,11 @@ const Home: NextPage = () => {
     }
   })
 
-  // console.log(filteredList)
-
-
-
   const TodoDisplay = filteredList.map((task: ITask, key: number) => {
     return (
       <Todo key={key} task={task} completeTask={completeTask} darkMode={darkMode} todoList={todoList} setTodoList={setTodoList}/>
     )
   })
-
-
 
   return (
     <div>
@@ -171,20 +174,14 @@ const Home: NextPage = () => {
           <Background darkMode={darkMode}>
             HelloWhiril
           </Background>
-          <Test>
-            <img src="/bg-desktop-light.jpg"/>
-          </Test>
-            {/* <Image src="/bg-mobile-light.jpg" 
-            height={200} 
-            width={'100%'}
-            // layout="fill"
-            /> */}
+          <TodoContainer>
             <TaskContainer darkMode={darkMode}>
               <Circle darkMode={darkMode}/>
               <EnterTask  darkMode={darkMode} name='Task' placeholder='Create a new todo...' onChange={handleChange} onKeyDown={onEnter} value={task}/>
             </TaskContainer>
         {TodoDisplay}
         <Footer darkMode={darkMode} filter={filter} taskCount={TaskCount} deletedCompleted={deleteCompleted} todoList={todoList} setTodoList={setTodoList} filter={filter} setFilter={setFilter}/>
+        </TodoContainer>      
       </Container>
     </div>
   )
