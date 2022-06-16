@@ -24,7 +24,8 @@ const Container = styled.div<DisplayModeProps>`
 
 const Background = styled.div<DisplayModeProps>`
   width: 100%;
-  height: 400px;
+  height: 250px;
+  z-index: 2;
   background-image: url${props => !props.darkMode ? '(/bg-mobile-light.jpg)' : '(/bg-mobile-dark.jpg)'};
   background-size: cover;
   @media (min-width: 1200px) {
@@ -37,19 +38,19 @@ const TodoContainer = styled.div`
   flex-direction: column;
   align-items: center;
   min-width: 95%;
+  border: 1px solid red;
+  z-index: 1;
+  margin-bottom: 50em;
   @media (min-width: 1200px) {
     max-width: 50%;
   }
 `
 
-const Test = styled.div<DisplayModeProps>`
-  width: 100%;
-  `
-
-const Img = styled.img`
-  max-with: 100%;
-  max-height: 100%;
-  object-fit: cover;
+const TitleContainer = styled.div<DisplayModeProps>`
+  width: 90%;
+  background: green;
+  display: flex;
+  flex-direction: row;
 `
 
 const TaskContainer = styled.div<DisplayModeProps>`
@@ -170,11 +171,14 @@ const Home: NextPage = () => {
         <title>Task Manager</title>
       </Head>
       <Container darkMode={darkMode}>
-        <button darkMode={darkMode} onClick={toggleMode}>Toggle</button>
           <Background darkMode={darkMode}>
             HelloWhiril
           </Background>
           <TodoContainer>
+            <TitleContainer>
+              <span style={{alignSelf: 'flex-start'}}>TODO</span>
+              <span darkMode={darkMode} onClick={toggleMode}>Toggle</span>
+            </TitleContainer>
             <TaskContainer darkMode={darkMode}>
               <Circle darkMode={darkMode}/>
               <EnterTask  darkMode={darkMode} name='Task' placeholder='Create a new todo...' onChange={handleChange} onKeyDown={onEnter} value={task}/>
