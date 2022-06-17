@@ -1,8 +1,8 @@
-import '../styles/globals.css'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import type { AppProps } from "next/app";
 
-import theme from '../theme'
+import theme from "../theme";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -16,16 +16,15 @@ const GlobalStyle = createGlobalStyle`
   li {
     cursor: pointer;
   }
-`
+`;
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle/>
-   <Component {...pageProps} />
-   </ThemeProvider>
-  )
-
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
