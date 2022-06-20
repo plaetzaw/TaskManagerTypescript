@@ -103,7 +103,6 @@ const Todo = ({
 
   const deleteSingleTask = (task: any) => {
     const id = task.id;
-    console.log(id);
     setTodoList(
       todoList.filter((task: any) => {
         return task.id != id;
