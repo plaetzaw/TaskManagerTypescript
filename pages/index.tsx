@@ -146,15 +146,6 @@ const Home: NextPage = () => {
     }
   };
 
-  // const completeTask = (finishedTask: string): void => {
-  // console.log(test)
-  // setTodoList(
-  // test.map((e) => {
-  //   console.log(e.task === finishedTask)
-  //   console.log(e.task === finishedTask ? {...e, qty: e.qty + 15 } : {...e, qty: e.qty * 15})
-  //   console.log(e.task === finishedTask ? {...e, status: "completed" } : {...e, status: "active"})
-  // })
-  // )
   // console.log(test)
   // const finishTask = todoList.map((task) => {
   //   console.log('Do they match', task.taskName === finishedTask)
