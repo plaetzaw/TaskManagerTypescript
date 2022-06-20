@@ -122,18 +122,9 @@ const Circle = styled.div<DisplayModeProps>`
   }
 `;
 
-// color: ${(props) => {
-//   console.log(props.darkmode)
-// }}
-
 interface DisplayModeProps {
   darkMode?: boolean;
 }
-
-interface Toggle {
-  toggle: React.MouseEventHandler<HTMLButtonElement>;
-}
-
 const Home: NextPage = () => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [task, setTask] = useState<string>("");
