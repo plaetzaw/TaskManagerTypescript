@@ -22,6 +22,6 @@
     "styled.d.ts",
     "index.d.ts", 
     "theme.ts"
-, "pages/_app.tsxx"  ],
+, "pages/_app.tsxx", "pages/_app.js"  ],
   "exclude": ["node_modules"]
 }

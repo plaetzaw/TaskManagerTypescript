@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import type { AppProps } from "next/app";
+// import type { AppProps } from "next/app";
 
 import theme from "../theme";
 // import theme from '../styled'
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />

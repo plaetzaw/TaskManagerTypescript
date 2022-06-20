@@ -1,6 +1,8 @@
 import { DefaultTheme } from "styled-components";
 
-const primaryTheme: DefaultTheme = {
+const primaryTheme = {
+// const primaryTheme: DefaultTheme = {
+
   padding: "0px",
   margin: "0px",
   fonts: {
