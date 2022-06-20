@@ -89,7 +89,7 @@ const Box = styled.div`
 
 interface DisplayModeProps {
   darkMode: boolean;
-  selected: boolean;
+  selected?: boolean;
 }
 
 interface Props {
@@ -102,7 +102,7 @@ interface Props {
   darkMode: boolean;
 }
 
-const Footer: FC = ({
+const Footer = ({
   taskCount,
   deleteCompleted,
   todoList,
@@ -140,6 +140,7 @@ const Footer: FC = ({
       <FooterItem
         key={index}
         selected={selected}
+        darkMode={darkMode}
         onClick={() => {
           setFilter(`${item.name}`);
         }}

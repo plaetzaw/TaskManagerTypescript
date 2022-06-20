@@ -1,4 +1,3 @@
-import { url } from "inspector";
 import React from "react";
 import styled from "styled-components";
 import { ITask } from "../Interfaces";
@@ -81,7 +80,7 @@ interface Props {
   completeTask(finishedTask: string): void;
   darkMode: boolean;
   todoList: ITask[];
-  setTodoList(): void;
+  setTodoList(todoList: any): void;
 }
 
 // color: ${(props) => {
@@ -122,7 +121,8 @@ const Todo = ({
             completeTask(task.taskName);
           }}
         >
-          <Check completed={completed} />
+          <Check completed={completed} 
+          darkMode={darkMode}/>
         </Circle>
         <span style={{ paddingRight: "2em" }}>{task.taskName}</span>
         <XIcon darkMode={darkMode} onClick={() => deleteSingleTask(task)} />

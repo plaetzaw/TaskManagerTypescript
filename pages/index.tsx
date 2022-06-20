@@ -18,10 +18,7 @@ const Container = styled.div<DisplayModeProps>`
   font-size: ${(props) => props.theme.primaryTheme.fonts.size};
   padding: ${(props) => props.theme.primaryTheme.padding};
   margin: ${(props) => props.theme.primaryTheme.margin};
-  background-color: ${(props) =>
-    props.darkMode
-      ? props.theme.primaryTheme.lightMode.VeryLightGrayishBlue
-      : props.theme.primaryTheme.darkMode.VeryDarkBlue};
+  background-color: ${(props) => props.darkMode ? props.theme.primaryTheme.lightMode.VeryLightGrayishBlue : props.theme.primaryTheme.darkMode.VeryDarkBlue};
   // border: 1px solid white;
 `;
 
@@ -30,14 +27,10 @@ const Background = styled.div<DisplayModeProps>`
   width: 100%;
   height: 275px;
   z-index: 2;
-  background-image: url
-    ${(props) =>
-      !props.darkMode ? "(/bg-mobile-light.jpg)" : "(/bg-mobile-dark.jpg)"};
+  background-image: url${(props) => !props.darkMode ? "(/bg-mobile-light.jpg)" : "(/bg-mobile-dark.jpg)"};
   background-size: cover;
   @media (min-width: 1200px) {
-    background-image: url
-      ${(props) =>
-        !props.darkMode ? "(/bg-desktop-light.jpg)" : "(/bg-desktop-dark.jpg)"};
+    background-image: url${(props) => !props.darkMode ? "(/bg-desktop-light.jpg)" : "(/bg-desktop-dark.jpg)"};
   }
 `;
 
@@ -70,8 +63,7 @@ const Title = styled.span`
 `;
 
 const ModeIcon = styled.svg<DisplayModeProps>`
-  background-image: url
-    ${(props) => (props.darkMode ? "(/icon-sun.svg)" : "(/icon-moon.svg)")};
+  background-image: url${(props) => (props.darkMode ? "(/icon-sun.svg)" : "(/icon-moon.svg)")};
   background-repeat: no-repeat;
   width: 40px;
   height: 40px;
@@ -126,8 +118,7 @@ const Circle = styled.div<DisplayModeProps>`
         : props.theme.primaryTheme.darkMode.VeryDarkGrayishBlue};
   margin: 0 1em 0 1em;
   &:hover {
-    border: 1px solid
-      ${(props) => props.theme.primaryTheme.colorsPrimary.CheckBackground};
+    border: 1px solid ${(props) => props.theme.primaryTheme.colorsPrimary.CheckBackground};
   }
 `;
 
@@ -152,7 +143,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {}, [todoList]);
 
-  const onEnter = (e): void => {
+  const onEnter = (e: any): void => {
     if (e.key === "Enter") {
       const newTask = {
         id: Math.floor(Math.random() * 1000000),
@@ -264,10 +255,9 @@ const Home: NextPage = () => {
               darkMode={darkMode}
               filter={filter}
               taskCount={TaskCount}
-              deletedCompleted={deleteCompleted}
+              deleteCompleted={deleteCompleted}
               todoList={todoList}
               setTodoList={setTodoList}
-              filter={filter}
               setFilter={setFilter}
             />
           </TodoContainer>
