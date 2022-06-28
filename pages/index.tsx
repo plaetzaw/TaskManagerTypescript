@@ -212,7 +212,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Task Manager</title>
+        <title>Todo List ~ React, TypeScript and Styled-Components</title>
       </Head>
       <Container darkMode={darkMode}>
         <Background darkMode={darkMode}>

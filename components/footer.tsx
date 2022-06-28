@@ -34,7 +34,7 @@ const FooterItem = styled.li<DisplayModeProps>`
   }
 `;
 
-const SelectorDisplay = styled.div<DisplayModeProps>`
+const SelectorDisplay = styled.ul<DisplayModeProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
